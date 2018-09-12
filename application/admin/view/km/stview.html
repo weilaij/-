@@ -1,0 +1,164 @@
+﻿{extend name="public/base" /}
+{block name="seo"}
+<title>{$title}</title>
+<meta name="keywords" content="{$keyword}">
+<meta name="description" content="{$desc}">
+<style>
+	.question_item {
+    margin: 0px 0px 20px 0px;
+    padding: 10px 10px;
+    font-size: 14px;
+    border-top: 1px solid #aaa;
+   
+}
+
+</style>
+</head>
+<body>
+{/block}
+{block name="content"}
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+		<span class="c-gray en">&gt;</span>
+		<a href="{:url('index')}">科目管理</a>
+		<span class="c-gray en">&gt;</span>
+		<a href="{:url('chinfo',['sub'=>$subname.id])}">{$subname.km}</a>
+		<span class="c-gray en">&gt;</span>
+		{$chname.title}
+	</nav>
+	
+	<div class="Hui-article">
+		<ul class="tab-sorm">
+		<li class="tab-list sorm-single mulu-sel" data-tab="single"><a href="#">单选试题</a></li>
+		<li class="tab-list sorm-multiple"><a href="#" data-tab="multiple">多选试题</a></li>
+	</ul> 
+		<article class="cl pd-20">
+              <div id="tab-con-single" class="tab-content tab-con-sel">
+        {volist name="stk" id="vo"}
+		   <div class="question_item">
+			<div class="question">
+				<div class="ques_cpt">
+					<div style="float:left;"> {$i}. (试题编号：{$vo.questionid})  </div><p><span style="font-size:16px;font-family:宋体;">{$vo.first}</span></p>				
+				</div>
+				<div class="option">
+					<span class="lbl" style="float:left;">A.&nbsp;&nbsp;</span>
+					<p><span style="font-size:16px;font-family:宋体; ">{$vo.option['0']['content']}</span></p>				
+				</div>
+                                                                     
+				<div class="option">
+					<span class="lbl"style="float:left;">B.&nbsp;&nbsp;</span>
+					<p><span style="font-size:16px;font-family:宋体">{$vo.option['1']['content']}</span></p>				
+				</div>
+                                                                       {eq name="$vo.option|count" value="4"}
+				<div class="option">
+					<span class="lbl" style="float:left;">C.&nbsp;&nbsp;</span>
+					<p><span style="font-size:16px;font-family:宋体">{$vo.option['2']['content']}</span></p>				
+				</div>
+				<div class="option">
+					<span class="lbl" style="float:left;">D.&nbsp;&nbsp;</span>
+					<p><span style="font-size:16px;font-family:宋体">{$vo.option['3']['content']}</span></p>				
+				</div>
+                                                                      {/eq}
+			</div>
+			<div class="answer-area">
+				<p>
+					正确答案：<font style="color:blue;" >{$vo.answer}</font>&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="javascript:;" onclick="admin_edit('试题编辑','{:url("km/steditone",["id"=>$vo["questionid"]])}','1','800','500')" class="ml-5" style="text-decoration:none">编辑</a>&nbsp;&nbsp;
+				<a href="javascript:;" onclick="admin_del(this,{$vo.questionid})">删除</a>
+				</p>
+			</div>
+		</div>
+		{/volist}
+	</div>
+		
+	<div id="tab-con-multiple" class=" tab-content">
+        {volist name="stkm" id="vo"}
+		   <div class="question_item">
+			<div class="question">
+				<div class="ques_cpt">
+					<div style="float:left;"> {$i}. (试题编号：{$vo.questionid})  </div><p><span style="font-size:16px;font-family:宋体; ">{$vo.first}</span></p>				
+				</div>
+				<div class="option">
+					<span class="lbl" style="float:left;">A.&nbsp;&nbsp;</span>
+					<p><span style="font-size:16px;font-family:宋体; ">{$vo.option['0']['content']}</span></p>				
+				</div>
+				<div class="option">
+					<span class="lbl"style="float:left;">B.&nbsp;&nbsp;</span>
+					<p><span style="font-size:16px;font-family:宋体">{$vo.option['1']['content']}</span></p>				
+				</div>
+				<div class="option">
+					<span class="lbl" style="float:left;">C.&nbsp;&nbsp;</span>
+					<p><span style="font-size:16px;font-family:宋体">{$vo.option['2']['content']}</span></p>				
+				</div>
+				<div class="option">
+					<span class="lbl" style="float:left;">D.&nbsp;&nbsp;</span>
+					<p><span style="font-size:16px;font-family:宋体">{$vo.option['3']['content']}</span></p>				
+				</div>
+				    {eq name="$vo.option|count" value="5"}
+				   <div class="option">
+					<span class="lbl" style="float:left;">E.&nbsp;&nbsp;</span>
+					<p><span style="font-size:16px;font-family:宋体">{$vo.option['4']['content']}</span></p>				
+				</div>
+				{/eq}
+                
+			</div>
+		<div class="answer-area">
+				<p>
+					正确答案：<font style="color:blue;" >{$vo.answer}</font>&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="javascript:;" onclick="admin_edit('试题编辑','{:url("km/steditmany",["id"=>$vo["questionid"]])}','1','800','500')" class="ml-5" style="text-decoration:none">编辑</a>&nbsp;&nbsp;
+				<a href="javascript:;" onclick="admin_del(this,{$vo.questionid})">删除</a>
+				</p>
+			</div>
+		</div>
+		{/volist}
+
+		
+	</div>
+		</article>
+	</div>
+<!-- 	<script type="text/javascript" src="__STATIC__/home/js/tab.js"></script>  -->
+	<script type="text/javascript" src="__STATIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+	<script type="text/javascript" src="__STATIC__/static/h-ui/js/H-ui.js"></script> 
+</section>
+
+
+<!--请在下方写此页面业务相关的脚本-->
+
+
+</script> 
+{/block}
+<!--/请在上方写此页面业务相关的脚本-->
+{block name="js"}
+<script>
+	function admin_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		//此处请求后台程序，下方是成功后的前台处理……
+		$.get("{:url('km/deletest')}",{id:id})
+		
+		$(obj).parents(".question_item").remove();
+		layer.msg('已删除!',{icon:1,time:1000});
+	});
+}
+/*管理员-编辑*/
+function admin_edit(title,url,id,w,h){
+	$.get(url,{id:id});
+	layer_show(title,url,w,h);
+}
+	//////////////////
+$(".tab-list").click(function(){
+	$(".tab-con-sel").removeClass("tab-con-sel");
+	$(".mulu-sel").removeClass("mulu-sel");
+	$(this).addClass('mulu-sel');
+		if ($(this).data('tab')=="single") {
+			$("#tab-con-single").addClass("tab-con-sel");
+		}else{
+			$("#tab-con-multiple").addClass('tab-con-sel');
+		}
+})
+</script>
+
+{/block}
+</body>
+</html>

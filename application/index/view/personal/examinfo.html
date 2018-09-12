@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>思政课考试安排</title>
+	<link rel="icon" type="text/css" href="__STATIC__/home/img/icon.png" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<script src="__STATIC__/home/js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/css/style-data.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/page/css/alert.css">
+</head>
+<body>
+
+	{volist name='examinfo' id='ei'}
+	<div class="main">
+		<ul class="exam-msg">
+			<li class="list-head">{$ei.course}</li>
+			<li class="msg-detil">
+				<div class="msg-left">
+					<img alt="×" src="__STATIC__/home/img/日期.png" class="left-img date-img">
+					<p class="left-p date-p">时间</p>
+				</div>
+				<p class="msg-right date-msg">{$ei.exam_date}{$ei.exam_time}</p>
+			</li>
+			<li class="msg-detil">
+				<div class="msg-left">
+					<img alt="×" src="__STATIC__/home/img/位置.png" class="left-img ">
+					<p class="left-p room">考场</p>
+				</div>
+				<p class="msg-right room">{$ei.exam_room}</p>
+			</li>
+			<li class="msg-detil">
+				<div class="msg-left">
+					<img alt="×" src="__STATIC__/home/img/老师.png" class="left-img teacher-img">
+					<p class="left-p teacher-p">老师</p>
+				</div>
+				<p class="msg-right teacher-msg">{$ei.teacher}</p>
+			</li>
+			<li class="msg-detil">
+				<div class="msg-left">
+					<img alt="×" src="__STATIC__/home/img/班级管理.png" class="left-img class-img">
+					<p class="left-p class-p">组班号</p>
+				</div>
+				<p class="msg-right class-msg">{$ei.class_id}</p>
+			</li>
+		</ul>
+	</div>
+		{/volist}
+	<script type="text/javascript" src="__STATIC__/home/page/js/alert.js"></script>
+
+	 {eq name="isexam" value="0"} 
+	<script>
+	alert("暂时还没有您的思政课考试安排哦！");
+	</script>
+	{/eq}
+</body>
+</html>

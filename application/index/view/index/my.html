@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人中心</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="icon" type="text/css" href="__STATIC__/home/img/icon.png" />
+	<script type="text/javascript" src="__STATIC__/home/js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/css/mainstyle.css">
+</head>
+<body>	
+	<div id="user" >
+		<div id="user-msg">
+			<div class="user-head">
+				<img id="user-head" src="{$Think.session.head}">
+			</div>
+			<div id="user-msg-text">
+				<span id="user-name">{$Think.session.name}</span>
+				<span id="user-id">ID:{$Think.session.student_id}</span>
+			</div>
+		</div>
+			<ul id="user-list">
+			<li id="exam-msg0" class="user-list-sub exam-msg">
+					<i class="iconfont sx_user_sub color_exam_date">&#xe644;</i><p>思政课考试安排</p>
+			</li>
+			<li id="exam-msg1" class="user-list-sub">
+				<i class="iconfont sx_user_sub color_lianxi">&#xe609;</i><p>练题记录</p>
+			</li>
+			<li id="exam-msg2" class="user-list-sub">
+				<i class="iconfont sx_user_sub color_mokao">&#xe9df;</i><p>模考历史查询</p>
+		<!-- 	</li>
+		<li id="exam-msg" class="user-list-sub">
+			<img src="__STATIC__/home/img/修改.png"><p>我的报错</p>
+		</li> -->
+			<li id="exam-msg3" class="user-list-sub exam-msg">
+				<i class="iconfont sx_user_sub color_about">&#xe600;</i><p>关于</p>
+			</li>
+		</ul>
+	</div>
+
+	<div id="index-bottom">
+		<ul id="btm-list">
+			<li class="home-btmli" id="list-home">
+				<i class="iconfont noselect sxhome">&#xe6bb;</i>
+				<p id="btm-home-msg" class="btmmsg ">主页</p>
+			</li>
+			<li class="home-btmli" id="list-user">
+			<i class="iconfont select sxhome">&#xe735;</i>
+				<p id="btm-user-msg" class="btm-msg msg-select">个人中心</p>
+			</li>
+		</ul>
+	</div>
+	<!-- 底部导航切换 -->
+	<script>
+$("#exam-msg1").click(function(){
+	location.href= "{:url('personal/prainf')}";
+})
+$("#exam-msg0").click(function(){
+	location.href= "{:url('personal/examinfo')}";
+})
+$("#exam-msg2").click(function(){
+	location.href= "{:url('personal/mkinfo')}";
+})
+$("#exam-msg3").click(function(){
+	location.href= "{:url('personal/about')}";
+})
+$("#list-home").click(function(){
+	location.href= "{:url('index/index1')}";
+})
+
+	</script>
+	<!--  <script type="text/javascript" src="__STATIC__/home/js/tab.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,252 @@
+﻿<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="favicon.ico" >
+<link rel="Shortcut Icon" href="favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__STATIC__/lib/html5.js"></script>
+<script type="text/javascript" src="__STATIC__/lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script><![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<title>编辑试题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+<article class="cl pd-20">
+
+
+	<form action="" method="post" class="form form-horizontal" id="form-admin-add">
+		  <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>题干：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+               <input type="text" class="input-text" id="stem" name="stem"  value="{:str_replace('"', '&#34;', str_replace("'", '&#39;', $stk['stem']))}" placeholder="" />
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>A选项：</label>
+            <div class="formControls col-xs-8 col-sm-9" ">
+                <input type="text" class="input-text" style="width: 50%;" value="{$stk['option']['key_a']}" placeholder="" id="key_a" name="key_a">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>B选项：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$stk['option']['key_b']}" style="width: 50%;" placeholder="" id="key_b" name="key_b">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>C选项：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$stk['option']['key_c']}" style="width: 50%;" placeholder="" id="key_c" name="key_c">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>D选项：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$stk['option']['key_d']}" style="width: 50%;" placeholder="" id="key_d" name="key_d">
+            </div>
+        </div>
+      
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">E选项：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$stk['option']['key_e']}" style="width: 50%;" placeholder="" id="key_e" name="key_e">
+            </div>
+        </div>
+          <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">F选项：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$stk['option']['key_f']}" style="width: 50%;" placeholder="" id="key_f" name="key_f">
+            </div>
+        </div>
+      
+       
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>正确答案：</label>
+            <div class="formControls col-xs-8 col-sm-9 skin-minimal">
+                <div class="radio-box">
+                    <input type="checkbox" id="ans1" name="ans1"  >
+                    <label for="sex-1">A</label>
+                </div>
+                <div class="radio-box">
+                    <input type="checkbox" id="ans2" name="ans2" >
+                    <label for="sex-2">B</label>
+                </div>
+                <div class="radio-box">
+                    <input type="checkbox" id="ans3" name="ans3" >
+                    <label for="sex-3">C</label>
+                </div>
+                <div class="radio-box">
+                    <input type="checkbox" id="ans4" name="ans4" >
+                    <label for="sex-3">D</label>
+                </div>
+                <div class="radio-box">
+                    <input type="checkbox" id="ans5" name="ans5" >
+                    <label for="sex-3">E</label>
+                </div>
+                 <div class="radio-box">
+                    <input type="checkbox" id="ans6" name="ans5" >
+                    <label for="sex-3">F</label>
+                </div>
+            </div>
+        </div>
+		<!--将当前记录的id做为隐藏域发送到服务器-->
+		<input type="hidden" value="{$stk.id}" name="id" id="id">
+            <input type="hidden" value="" name="oldans" id="oldans">
+
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;" id="submit" >
+			</div>
+		</div>
+	</form>
+
+
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__STATIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/layer/2.4/layer.js"></script> 
+<script type="text/javascript" src="__STATIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__STATIC__/static/h-ui.admin/js/H-ui.admin.page.js"></script> 
+
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<script type="text/javascript">
+ var ans1 = document.getElementById('ans1');
+  var ans2 = document.getElementById('ans2');
+  var ans3 = document.getElementById('ans3');
+  var ans4 = document.getElementById('ans4');
+    var ans5 = document.getElementById('ans5');
+ if({$stk['option']['status_a']}==1)
+{
+   ans1.checked = true;
+}
+if({$stk['option']['status_b']}==1)
+{
+   ans2.checked = true;
+   
+}
+if({$stk['option']['status_c']}==1)
+{
+   ans3.checked = true;
+    
+}
+if({$stk['option']['status_d']}==1)
+{
+   ans4.checked = true;
+  
+}
+if({$stk['option']['status_e']}==1)
+{
+   ans5.checked = true;
+  
+}
+if({$stk['option']['status_f']}==1)
+{
+   ans6.checked = true;
+  
+}
+
+ $(function () {
+    $("#submit").on('click',function(event){
+        if($("#ans1").is(':checked'))
+        {
+            var ans1=1;
+        }else{
+            var ans1=0;
+        }
+        if($("#ans2").is(':checked'))
+        {
+            var ans2=1;
+        }else{
+            var ans2=0;
+        }
+        if($("#ans3").is(':checked'))
+        {
+            var ans3=1;
+        }else{
+            var ans3=0;
+        }
+        if($("#ans4").is(':checked'))
+        {
+            var ans4=1;
+        }else{
+            var ans4=0;
+        }
+        if($("#ans5").is(':checked'))
+        {
+            var ans5=1;
+        }else{
+            var ans5=0;
+        }
+        if($("#ans6").is(':checked'))
+        {
+            var ans6=1;
+        }else{
+            var ans6=0;
+        }
+        var form_data = {
+                stem: $("#stem").val(),
+                key_a: $("#key_a").val(),
+                key_b: $("#key_b").val(),
+                key_c: $("#key_c").val(),
+                key_d: $("#key_d").val(),
+                key_e: $("#key_e").val(),
+                key_f: $("#key_f").val(),
+                 id: $("#id").val(),
+                ans1,ans2,ans3,ans4,ans5,ans6,
+              
+            };
+
+       $.ajax({
+        type:"post",
+        url:"{:url('stmupdata')}",
+        data:form_data,
+        dataType:'json',
+        success:function(data){
+            if(data.status==1){
+                
+                alert(data.message);
+            }else{
+                alert(data.message);
+                 window.location.reload();
+            }
+
+
+        }
+       })
+    })
+})
+
+
+
+
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

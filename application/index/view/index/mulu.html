@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ch-zn">
+<head>
+	<meta charset="UTF-8">
+	<title>目录</title>
+	<link rel="icon" type="text/css" href="__STATIC__/home/img/icon.png" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<script type="text/javascript" src="__STATIC__/home/js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/swiper/swiper-4.2.2.min.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/css/mulu.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/page/css/alert.css">
+</head>
+<body>
+	<ul class="tab-sorm">
+		<li class="tab-list sorm-single mulu-sel" data-tab="single"><a href="#">单选</a></li>
+		<li class="tab-list sorm-multiple  "><a href="#" data-tab="multiple">多选</a></li>
+	</ul>
+	<div class="swiper-container">
+	    <div class="swiper-wrapper">
+	        <div class="swiper-slide swiper-slide-prev">
+	        	<div id="tab-con-single" class="tab-content ">
+	        		{neq name="ustaList" value="0"}
+					<ul class="mulu-list single-list">
+						{volist name='ustaList' id='vo'}
+						<li class="mulu-list-sub"><a href="{:url("stk/$type",['sub'=>$sub,'ch'=>$vo.id,'tp'=>'0'])}">{$vo.title}&nbsp{$vo.name}</a></li>
+						{/volist}
+						<!-- <li class="mulu-list-sub"><a href="{:url("stk/$type",['sub'=>$sub,'ch'=>'2','tp'=>'0'])}">第2章</a></li>
+						<li class="mulu-list-sub"><a href="{:url("stk/$type",['sub'=>$sub,'ch'=>'3','tp'=>'0'])}">第3章</a></li>
+						<li class="mulu-list-sub"><a href="{:url("stk/$type",['sub'=>$sub,'ch'=>'4','tp'=>'0'])}">第4章</a></li>
+						<li class="mulu-list-sub"><a href="{:url("stk/$type",['sub'=>$sub,'ch'=>'5','tp'=>'0'])}">第5章</a></li> -->
+					</ul>
+					{/neq}
+					{eq name="ustaList" value="0"}
+					{eq name="type" value="cllect"}
+					<li class="mulu-list-sub">您还没收藏任何该科目单选试题哦！</li>
+					{/eq}
+					{eq name="type" value="wrong"}
+					<li class="mulu-list-sub">您还没有该科目任何单选错题哦！</li>
+					{/eq}
+					{eq name="type" value="rember"}
+					<li class="mulu-list-sub">该科目暂时还未录入试题，敬请期待哦！</li>
+					{/eq}
+					{eq name="type" value="practice"}
+					<li class="mulu-list-sub">该科目暂时还未录入试题，敬请期待哦！</li>
+					{/eq}
+					{/eq}
+					
+				</div>
+	        </div>
+	        <div class="swiper-slide swiper-slide-active">
+	        	<div id="tab-con-multiple" class=" tab-content tab-con-sel">
+	        		{neq name="ustaListm" value="0"}
+					<ul class="mulu-list multiple-list">
+						{volist name='ustaListm' id='vo'}
+						<li class="mulu-list-sub"><a href="{:url("stk/$type",['sub'=>$sub,'ch'=>$vo.id,'tp'=>'1'])}">{$vo.title}&nbsp{$vo.name}</a></li>
+						{/volist}
+						<!-- <li class="mulu-list-sub"><a href="{:url("stk/$type",['sub'=>$sub,'ch'=>'2','tp'=>'1'])}">第2章</a></li>
+						<li class="mulu-list-sub"><a href="{:url("stk/$type",['sub'=>$sub,'ch'=>'3','tp'=>'0'])}">第3章</a></li>
+						<li class="mulu-list-sub"><a href="{:url("stk/$type",['sub'=>$sub,'ch'=>'4','tp'=>'0'])}">第4章</a></li> -->
+					</ul>
+					{/neq}
+					{eq name="ustaListm" value="0"}
+					{eq name="type" value="cllect"}
+					<li class="mulu-list-sub">您还没收藏任何该科目多选试题哦！</li>
+					{/eq}
+					{eq name="type" value="wrong"}
+					<li class="mulu-list-sub">您还没有该科目任何多选错题哦！</li>
+					{/eq}
+					{eq name="type" value="rember"}
+					<li class="mulu-list-sub">该科目暂时还未录入试题，敬请期待哦！</li>
+					{/eq}
+					{eq name="type" value="practice"}
+					<li class="mulu-list-sub">该科目暂时还未录入试题，敬请期待哦！</li>
+					{/eq}
+					{/eq}
+					
+				</div>
+	        </div>
+	    </div>
+	</div>
+
+	<script type="text/javascript" src="__STATIC__/home/swiper/swiper-4.2.2.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/home/js/tab.js"></script>
+		<script type="text/javascript" src="__STATIC__/home/page/js/alert.js"></script>
+	<script>
+  var swiper = new Swiper ('.swiper-container', {
+    direction: 'horizontal',
+    speed:300,
+    loop: false,
+    on:{
+    	slideChange: function(){
+      		$(".mulu-sel").removeClass("mulu-sel");
+			$(".tab-sorm li:eq("+swiper.activeIndex+")").addClass('mulu-sel');
+   		},
+  	},
+  })
+  function ajax_chtp_select(sub_select_id)
+{
+	$.ajax({
+		url: '{:url('chtpselect')}',
+		type: 'POST',
+		dataType: 'json',
+		data: {chtp: sub_select_id },
+		success: function(data){
+			
+		},
+	});
+}
+var a={$Think.session.chtp_select};
+$(function(){
+	swiper.slideTo(a,0,false);
+})
+
+
+      
+  </script>
+</body>
+</html>

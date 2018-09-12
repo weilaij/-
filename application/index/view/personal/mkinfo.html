@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ch-zn">
+<head>
+	<meta charset="UTF-8">
+	<title>模考历史查询</title>
+	<link rel="icon" type="text/css" href="__STATIC__/home/img/icon.png" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<script src="__STATIC__/home/js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="__STATIC__/home/css/data-exam.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/page/css/alert.css">
+</head>
+<body>
+{neq name="isexam" value="0"}
+<div class="user-data-banner">
+	<div class="null"></div>
+	<div class="userself-data">
+		<ul class="data-head-list">
+			<li class="userself-data-sub exercise-times">
+				<div class="data-sub-con exercises-times-head">考试次数</div>
+				<p class="exercises-content wrong-num" >{$count}<span class="dao">次</span></p>
+			</li>
+			<li class="userself-data-sub exercise-accuracy">
+				<div class="data-sub-con exercises-accuracy-head">平均分</div>
+				<p class="exercises-content accuracy-num" >{$avg}<span class="dao">分</span></p>
+			</li>
+			<li class="userself-data-sub exercise-top">
+				<div class="data-sub-con exercises-top-head">最高分</div>
+				<p class="exercises-content accuracy-num" >{$max}<span class="dao">分</span></p>
+			</li>
+		</ul>
+	</div>
+</div>
+	<div class="data-line topline">
+			<p class="data-line-col1 row1">时间</p>
+			<p class="data-line-col2 row1">科目</p>
+			<p class="data-line-col3 row1">答题数</p>
+			<p class="data-line-col4 row1">分数</p>
+	</div>
+	<div class="data-detail">
+		{volist name='mkinfo' id='mi'}
+		<div class="data-line">
+			<p class="data-line-col1">{$mi.create_time}</p>
+			<p class="data-line-col2">{$mi.sub}</p>
+			<p class="data-line-col3">{$mi.sum-$mi.wd}</p>
+			<p class="data-line-col4">{$mi.fs}分</p>
+		</div>
+		{/volist}
+	</div>
+	{/neq}
+	<script type="text/javascript" src="__STATIC__/home/page/js/alert.js"></script>
+	 {eq name="isexam" value="0"} 
+	<script>
+	alert("您还没有进行模考，赶快去试试吧！");
+	</script>
+	{/eq}
+
+</body>
+</html>

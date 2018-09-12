@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<title>{$title}</title>
+	<link rel="icon" type="text/css" href="__STATIC__/home/img/icon.png" />
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/swiper/swiper-4.2.2.min.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/page/css/style.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/page/css/icon.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/page/css/style-exam.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/page/css/menu.css">
+	<script type="text/javascript" src="__STATIC__/home/js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/page/css/alert.css">
+	<!-- <script type="text/javascript" src="__STATIC__/home/page/js/som.json"></script> -->
+</head>
+<body>
+<!-- 	<div id="content" class="content">
+		<div id="subject">
+		</div>
+
+	</div> -->
+	<div class="swiper-container">
+	    <div class="swiper-wrapper">
+	        	 <div class="spinner">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+	    </div>
+    
+</div>
+	<div id="bottom" class="bottom">
+		<ul id="btm-list" class="btm-list">
+			<li id="btm-store" class="btm-op btm-store">
+					<div id="store-img" class="btm-icon store-img"><i class="iconfont icon_sc">&#xe6b4</i></div>
+					<span id="store-p" class="btm-p store-p" data-operate="store">移除</span>
+			</li>
+			<li id="btm-wrong" class="btm-op btm-res">
+					<div id="res-right-img" class="btm-icon res-right-img" data-operate="wrong"><i  class="iconfont icon_sc">&#xe659</i></div>
+					<span id="wrong-p" class="btm-p res-right-p">0</span>
+
+					<div id="res-wrong-img" class="btm-icon res-right-img" data-operate="wrong"><i  class="iconfont icon_sc">&#xe657</i></div>
+					<span id="right-p" class="btm-p res-wrong-p">0</span>
+
+			</li>
+			<li id="btm-objli" class="btm-op btm-objli">
+					<div id="number-img" class="btm-icon objli-img" data-operate="que-list"><i id="location" class="iconfont icon_sc">&#xe729</i></div>
+					<span id="number-p" class="btm-p objli-p">0/0</span>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="__STATIC__/home/swiper/swiper-4.2.2.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/home/page/js/build.js"></script>
+	<script type="text/javascript" src="__STATIC__/home/page/js/change.js"></script>
+	<script type="text/javascript" src="__STATIC__/home/page/js/alert.js"></script>
+	<script type="text/javascript" src="__STATIC__/home/page/js/menu.js"></script>
+		<script>
+  var mySwiper = new Swiper ('.swiper-container', {
+    direction: 'horizontal',
+    speed:300,
+    loop: false,
+     on:{
+    	transitionEnd:function(){
+    		subnumber();
+    	}
+
+
+    	//slideNextTransitionStart: function(){
+	      	/*if (mySwiper.activeIndex==Math.round(mySwiper.slides.length/2)) {
+	     		build(this,1);
+	     		}*/
+	  //   		getquestion();
+     	
+   		//},
+    	/*slidePrevTransitionStart: function(){
+     		build(this,0);
+     	}*/
+  },
+    
+  })
+     function getquestion() {
+	$.ajax({
+		url: '{:url('cllectdata')}',
+		type: 'POST',
+		dataType: 'json',
+		data: {sub: {$sub} , ch: {$ch},tp:{$tp}},
+		success: function(data){
+			/*return data;*/
+			var dataObj=eval("("+data+")");//转换为json对象
+			var dataq = jQuery.parseJSON(data);
+    if(data=="[]"){
+				alert("暂无试题");
+			}
+            //return dataObj;*/
+            pagenew(dataq);
+			
+		},
+		error: function(){
+			alert('获取题目！');
+		}
+	});
+}  
+   
+function delcllect(questionid){
+	$.ajax({
+		url: '{:url('statistics/delcllect')}',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			"questionid": questionid,
+			
+		},
+		success: function(data){
+			if(mySwiper.activeIndex!=mySwiper.slides.length-1){
+				mySwiper.slideNext(300,false);
+		   		mySwiper.removeSlide(mySwiper.activeIndex-1);
+			}else{
+
+				mySwiper.removeSlide(mySwiper.activeIndex);
+				mySwiper.slideTo(mySwiper.slides.length);
+				if(mySwiper.slides.length==0){
+				location.reload();
+				}
+			}
+			
+			
+		},
+	})
+	
+}
+function uploadsome(questionid,option){
+	$.ajax({
+		url: '{:url('statistics/cllect')}',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			"questionid": questionid,
+			"option": option,
+			"sub":{$sub}
+		},
+	})
+	.done(function() {
+		
+	})
+	.fail(function() {
+	})
+} 
+
+$('#btm-store').click(function(){
+	delcllect($(mySwiper.slides[mySwiper.activeIndex]).find('.content').data('questionid'));
+})
+
+  </script> 
+</body>
+</html>

@@ -1,0 +1,79 @@
+{extend name="public/base" /}
+
+{block name="seo"}
+<title>{$title|default="章节管理"}</title>
+<meta name="keywords" content="{$keyword|default=""}">
+<meta name="description" content="{$desc|default=""}">
+<link rel="stylesheet" href="__STATIC__/static/h-ui.admin/css/a.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+{/block}
+
+
+{block name="content"}
+<section class="Hui-article-box">
+  <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+    <span class="c-gray en">&gt;</span>
+    科目管理
+    <span class="c-gray en">&gt;</span>
+    </nav>
+  <div class="Hui-article">
+    <article class="cl pd-20">
+      {volist name="subinfo" id="vo"}
+    <div class="statistic">
+    <div class="statistic-main">
+      <p class="statistic-tirtle">{$vo.km}</p>
+      <ul class="statistic-list">
+        <li class="statistic-listsub">
+          <p class="statistic-listsub-num">{$vo.student_count}</p>
+          <p class="statistic-listsub-p">学生数</p>
+        </li>
+        <li class="statistic-listsub">
+          <p class="statistic-listsub-num">{$vo.ch_count}</p>
+          <p class="statistic-listsub-p">章节数</p>
+        </li>
+        <li class="statistic-listsub">
+          <p class="statistic-listsub-num">{$vo.st_count}</p>
+          <p class="statistic-listsub-p">试题数</p>
+        </li>
+      </ul>
+    </div>
+    <div class="statistic-mouseover">
+      <div class="statistic-shadow">
+      </div>
+      <a href="{:url('admin/km/chinfo',['sub'=>$vo.id])}" class="statistic-a">
+        <i></i>
+        查看
+      </a>
+    </div>
+  </div>
+  {/volist}
+    
+    </article>
+  </div>
+</section>
+
+<!--请在下方写此页面业务相关的脚本--> 
+<script type="text/javascript" src="__STATIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/laypage/1.2/laypage.js"></script> 
+<!-- <script type="text/javascript" src="__STATIC__/static/h-ui.admin/js/a.js"></script> --> 
+
+<script >
+  $('.statistic')
+.on('mouseenter',function(){
+    $(this).find('.statistic-mouseover').stop().animate({'top':'0'},300);
+})
+.on('mouseleave',function(){
+  $(this).find('.statistic-mouseover').stop().animate({'top':'-200'},300);
+})
+</script> 
+{/block}
+{block name="js"}
+
+
+{/block}
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

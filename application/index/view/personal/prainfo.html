@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ch-zn">
+<head>
+	<meta charset="UTF-8">
+	<title>我的练题记录</title>
+	<link rel="icon" type="text/css" href="__STATIC__/home/img/icon.png" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<script src="__STATIC__/home/js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="__STATIC__/home/css/dataprac.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/page/css/alert.css">
+</head>
+<body>
+{neq name="isexam" value="0"}
+<div class="user-data-banner">
+	<div class="userself-data">
+		<div class="data-mainmsg">
+			<div class="data-main-con exercises-sum-head">练题总数</div>
+			<p class="data-mainmsg-content sum-num" >{$sta['user_sum']}<span class="dao">道</span></p>
+		</div>
+		<ul class="data-head-list">
+			<li class="userself-data-sub exercise-wrong">
+				<div class="data-sub-con exercises-wrong-head">错题</div>
+				<p class="exercises-content wrong-num" >{$sta['user_wrong']}<span class="dao">道</span></p>
+			</li>
+			<li class="userself-data-sub">
+				<div class="data-sub-con exercises-accuracy-head">正确率</div>
+				<p class="exercises-content accuracy-num" >{$sta['user_sum']*100/$sta['user_sum']-$sta['user_wrong']*100/$sta['user_sum']|round=2}<span class="dao">%</span></p>
+			</li>
+		</ul>
+	</div>
+</div>
+	<div class="data-line topline">
+			<p class="data-line-col1 row1">科目</p>
+			<p class="data-line-col2 row1">练题数</p>
+			<p class="data-line-col3 row1">答错</p>
+			<p class="data-line-col4 row1">正确率</p>
+	</div>
+	<div class="data-detail">
+		{neq name="sta['jds_sum']" value="0"}
+		<div class="data-line">
+			<p class="data-line-col1">近代史</p>
+			<p class="data-line-col2">{$sta['jds_sum']}</p>
+			<p class="data-line-col3">{$sta['jds_wrong']}</p>
+			<p class="data-line-col4">{$sta['jds_sum']*100/$sta['jds_sum']-$sta['jds_wrong']*100/$sta['jds_sum']|round=2}%</p>
+		</div>
+		{/neq}
+		{neq name="sta['sx_sum']" value="0"}
+		<div class="data-line">
+			<p class="data-line-col1">思修</p>
+			<p class="data-line-col2">{$sta['sx_sum']}</p>
+			<p class="data-line-col3">{$sta['sx_wrong']}</p>
+			<p class="data-line-col4">{$sta['sx_sum']*100/$sta['sx_sum']-$sta['sx_wrong']*100/$sta['sx_sum']|round=2}%</p>
+		</div>
+		{/neq}
+		{neq name="sta['mg1_sum']" value="0"}
+		<div class="data-line">
+			<p class="data-line-col1">毛概I</p>
+			<p class="data-line-col2">{$sta['mg1_sum']}</p>
+			<p class="data-line-col3">{$sta['mg1_wrong']}</p>
+			<p class="data-line-col4">{$sta['mg1_sum']*100/$sta['mg1_sum']-$sta['mg1_wrong']*100/$sta['mg1_sum']|round=2}%</p>
+		</div>
+		{/neq}
+		{neq name="sta['mg2_sum']" value="0"}
+		<div class="data-line">
+			<p class="data-line-col1">毛概II</p>
+			<p class="data-line-col2">{$sta['mg2_sum']}</p>
+			<p class="data-line-col3">{$sta['mg2_wrong']}</p>
+			<p class="data-line-col4">{$sta['mg2_sum']*100/$sta['mg2_sum']-$sta['mg2_wrong']*100/$sta['mg2_sum']|round=2}%</p>
+		</div>
+		{/neq}
+		{neq name="sta['mks_sum']" value="0"}
+		<div class="data-line">
+			<p class="data-line-col1">马克思</p>
+			<p class="data-line-col2">{$sta['mks_sum']}</p>
+			<p class="data-line-col3">{$sta['mks_wrong']}</p>
+			<p class="data-line-col4">{$sta['mks_sum']*100/$sta['mks_sum']-$sta['mks_wrong']*100/$sta['mks_sum']|round=2}%</p>
+		</div>
+		{/neq}
+
+	</div>
+	{/neq}
+	<script type="text/javascript" src="__STATIC__/home/page/js/alert.js"></script>
+	 {eq name="isexam" value="0"} 
+	<script>
+	alert("您还没有练习过题目，赶紧去试试吧！");
+	</script>
+	{/eq}
+
+
+</body>
+</html>

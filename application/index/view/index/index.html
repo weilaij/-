@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>学霸思政</title>
+	<link rel="icon" type="text/css" href="__STATIC__/home/img/icon.png" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<script type="text/javascript" src="__STATIC__/home/js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/css/mainstyle.css">
+		<link rel="stylesheet" type="text/css" href="__STATIC__/home/page/css/alert.css">
+</head>
+<body>
+	
+
+	<div id="main">
+		<div id="banner">
+			<img class="banner-img" src="__STATIC__/home/img/banner.jpg"></div>
+		<div id="homepage-content">
+		<div id="object-tab">
+			<ul id="obj-list">
+				<li id="1" class="obj-sub selected">近代史</li>
+				<li id="2" class="obj-sub">思修</li>
+				<li id="3" class="obj-sub">毛概Ⅰ</li>
+				<li id="4" class="obj-sub">毛概Ⅱ</li>
+				<li id="5" class="obj-sub">马克思</li>
+			</ul>
+		</div>
+		<div id="exam">
+			<ul id="exam-list">
+				<li class="exam-sub-test exam-item1">
+					<div id="practice" class="index-btn test-btn">
+						章节练习
+					</div>
+					
+				</li>
+				<li class="exam-sub exam-item2">
+				<div id="rember" class="index-btn bgc-red"><i class="iconfont white sxrember">&#xe663;</i>
+				<p>章节背诵</p></div></li>
+				<li class="exam-sub exam-item3">
+				<div id="mock" class="index-sim bgc-green">
+				<i class="iconfont white sxexam">&#xe60f;</i>
+				<p>模拟考场</p></div></li>
+				<li class="exam-sub exam-item4">
+				<div id="cllect" class="index-btn bgc-blue">
+			<i class="iconfont white sxrember">&#xe696;</i>
+				<p>我的收藏</p></div></li>
+				<li class="exam-sub exam-item5">
+				<div id="wrong" class="index-btn bgc-orange">
+				<i class="iconfont white sxrember">&#xe643;</i>
+				<p>&nbsp&nbsp错题集</p></div></li>
+			</ul>
+		</div>
+	</div>
+	</div>
+
+	<div id="index-bottom">
+		<ul id="btm-list">
+			<li class="home-btmli" id="list-home">
+				<i class="iconfont select sxhome">&#xe6bb;</i>
+				<p id="btm-home-msg" class="btmmsg msg-select">主页</p>
+			</li>
+			<li class="home-btmli" id="list-user">
+					<i class="iconfont noselect sxhome">&#xe735;</i>
+				<p id="btm-user-msg" class="btm-msg">个人中心</p>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="__STATIC__/home/page/js/alert.js"></script>
+	<!-- 底部导航切换 -->
+	<script>
+		
+$(function(){
+	var sub_select={$Think.session.sub_select};
+		$("#1").removeClass("selected");
+	    $("#"+sub_select).addClass("selected");
+	
+})
+
+$(".obj-sub").click(function() {
+	$(".selected").removeClass('selected');
+	$(this).addClass("selected");
+	var sub_select_id=$(".selected").attr("id")
+	ajax_sub_select(sub_select_id);
+})
+
+function ajax_sub_select(sub_select_id)
+{
+	$.ajax({
+		url: '{:url('subselect')}',
+		type: 'POST',
+		dataType: 'json',
+		data: {sub: sub_select_id },
+		success: function(data){
+			
+		},
+	});
+}
+
+$(".tab-list").click(function(){
+	$(".tab-con-sel").removeClass("tab-con-sel");
+	$(".mulu-sel").removeClass("mulu-sel");
+	$(this).addClass('mulu-sel');
+		if ($(this).data('tab')=="single") {
+			$("#tab-con-single").addClass("tab-con-sel");
+		}else{
+			$("#tab-con-multiple").addClass('tab-con-sel');
+		}
+})
+$(".index-btn").click(function(){
+	location.href= "{:url('mulu')}?"+"subject="+$(".selected").attr("id")+"&type="+$(this).attr("id");
+})
+$(".index-sim").click(function(){
+	location.href= "{:url('stk/simulation')}?"+"sub="+$(".selected").attr("id");
+})
+$("#list-user").click(function(){
+	location.href= "{:url('index/my')}";
+})
+
+	</script>
+	<!--  <script type="text/javascript" src="__STATIC__/home/js/tab.js"></script> -->
+</body>
+</html>

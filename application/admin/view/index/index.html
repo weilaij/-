@@ -1,0 +1,70 @@
+{extend name="public/base" /}
+
+{block name="seo"}
+<title>{$title|default='页面标题'}</title>
+<meta name="keywords" content="{$keyword|default='页面关键字'}">
+<meta name="description" content="{$desc|default='页面描述'}">
+</head>
+<body>
+{/block}
+
+
+{block name="content"}
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> 
+		<span class="c-999 en">&gt;</span>
+		<span class="c-666">运行环境</span> 
+		</nav>
+	<div class="Hui-article">
+		<article class="cl pd-20">
+			<p class="f-20 text-success">欢迎使用东华易班学霸思政题库后台管理</p>
+			<p>登录次数：{$Think.session.user_info.login_count} </p>
+			<p>上次登录IP：{$Request.ip}  上次登录时间：{:date("Y-m-d H:i:s",$Think.session.user_info.login_time)}</p>
+			
+			<table class="table table-border table-bordered table-bg mt-20">
+				<thead>
+					<tr>
+						<th colspan="2" scope="col">服务器信息</th>
+			</tr>
+		</thead>
+				<tbody>
+					<tr>
+						<th width="30%">服务器计算机名</th>
+						<td><span id="lbServerName">{$Request.host}</span></td>
+			</tr>
+					<tr>
+						<td>服务器IP地址</td>
+						<td>{$Request.ip} </td>
+			</tr>
+					<tr>
+						<td>服务器域名</td>
+						<td>{$Request.domain} </td>
+			</tr>
+					
+					<tr>
+						<td>当前PHP版本</td>
+						<td>{$Think.const.PHP_VERSION}</td>
+			</tr>
+					<tr>
+						<td>服务器版本 </td>
+						<td>{$Think.const.PHP_OS}</td>
+			</tr>
+					
+		</tbody>
+	</table>
+</article>
+		<footer class="footer">
+			<p><br> Copyright &copy;2018东华易班学霸思政<br></p>
+</footer>
+</div>
+</section>
+{/block}
+{include file="public/footer" /}
+<!--请在下方写此页面业务相关的脚本-->
+{block name="js"}
+
+
+{/block}
+
+</body>
+</html>

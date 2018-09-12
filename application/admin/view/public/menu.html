@@ -1,0 +1,57 @@
+﻿<!--_menu 作为公共模版分离出去-->
+<aside class="Hui-aside">
+	
+	<div class="menu_dropdown bk_2">
+		<dl id="menu-article">
+			<dt><i class="Hui-iconfont">&#xe616;</i> 题库管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a href="{:url('admin/km/index')}" title="">科目管理</a></li>
+					<li><a href="{:url('admin/stk/index')}" title="">录入试题</a></li>
+					
+		</ul>
+	</dd>
+</dl>
+		<dl id="menu-picture">
+			<dt><i class="Hui-iconfont">&#xe613;</i> 反馈管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a href="{:url('admin/feedback/index')}" title="">未处理</a></li>
+					<li><a href="{:url('admin/feedback/backinfo')}" title="">已处理</a></li>
+		</ul>
+	</dd>
+</dl>
+		<dl id="menu-product">
+			<dt><i class="Hui-iconfont">&#xe620;</i> 统计管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a href="{:url('admin/statistics/usersta')}" title="">学生答题统计</a></li>
+					<li><a href="{:url('admin/statistics/ststa')}" title="">题目统计</a></li>
+					<li><a href="{:url('admin/statistics/mksta')}" title="">学生模考统计</a></li>
+		</ul>
+	</dd>
+</dl>
+			<dl id="menu-member">
+			<dt><i class="Hui-iconfont">&#xe60d;</i> 考场信息<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a href="{:url('admin/exam/index')}" title="">上传考场信息</a></li>
+					<li><a href="{:url('admin/exam/output')}">考场信息查看</a></li>
+				</ul>
+			</dd>
+		</dl>
+		
+		<dl id="menu-admin">
+			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					
+					<li><a href="{:url('admin/user/adminlist')}" title="管理员列表">管理员列表</a></li>
+		</ul>
+	</dd>
+</dl>
+		
+</div>
+</aside>
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+<!--/_menu 作为公共模版分离出去-->
